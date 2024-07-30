@@ -1,0 +1,16 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    background-color: #A0B0AD;
+}
+
+h2 {
+    font-family: garamond;
+}
+.my_box{
+    position: absolute;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 10%;
+}

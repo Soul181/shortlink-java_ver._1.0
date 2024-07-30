@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Prorerties>
+        <Property name="layout">%d [%t] %-level %logger - %m%n</Property>
+    </Prorerties>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${layout}"/>
+        </Console>
+        <File name="LogFile" fileName="app.log">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="com.mkyong" level="debug" additivity="false">
+            <AppenderRef ref="LogFile"/>
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
+
+
+appender.consoleAppender=org.apache.log4j.ConsoleAppender
+appender.consoleAppender.layout=org.apache.log4j.PatternLayout
+appender.consoleAppender.layout.ConversionPattern=%d [%p|%c|%C{1}] %m%n
+
+appender.fileAppender=org.apache.log4j.RollingFileAppender
+appender.fileAppender.layout=org.apache.log4j.PatternLayout
+appender.fileAppender.layout.ConversionPattern=%d [%p|%c|%C{1}] %m%n
+appender.fileAppender.File=app.log
+
+
+rootLogger.level = info
+
+appender.console.name = STDOUT
+appender.console.type = Console
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+
+appender.file.name = LOGFILE
+appender.file.type = File
+appender.file.fileName = app.log
+appender.file.layout.type = PatternLayout
+appender.file.layout.pattern = [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+
+rootLogger=STDOUT, LOGFILE
+
+/////////////
+
+name=PropertiesConfig
+property.filename = logs
+appender = console, file
+
+appender.console.type = Console
+appender.console.name = STDOUT
+appender.console.layout.type = PatternLayout
+appender.console.layout.pattern = [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+
+appender.file.type = File
+appender.file.name = LOGFILE
+appender.file.fileName=${filename}/app.log
+appender.file.layout.type=PatternLayout
+appender.file.layout.pattern=[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+
+loggers=file
+logger.file.name=resources/log4j2.properties
+logger.file.level = debug
+logger.file.appenderRefs = file
+logger.file.appenderRef.file.ref = LOGFILE
+
+rootLogger.level = debug
+rootLogger.appenderRefs = stdout
+rootLogger.appenderRef.stdout.ref = STDOUT
+rootLogger.appenderRef.file.ref = LOGFILE
